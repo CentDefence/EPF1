@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPF — European Professional Football</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== LOADER ===================== -->
+<div id="loader">
+  <div class="loader-star"></div>
+  <div class="loader-mark"><img src="assets/logo.png" alt="EPF"></div>
+  <div class="loader-word">E U R O P E A N&nbsp;&nbsp;P R O F E S S I O N A L&nbsp;&nbsp;<b>F O O T B A L L</b></div>
+  <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+  <div class="loader-pct" id="loaderPct">LOADING 0%</div>
+</div>
+
+<div class="noise"></div>
+
+<!-- ===================== SITE ===================== -->
+<div id="site">
+  <header>
+    <div class="topbar">
+      <div class="brand" onclick="goTo('home')">
+        <img src="assets/logo.png" alt="EPF logo">
+        <div class="brand-text">
+          <span class="b1">EPF</span>
+          <span class="b2">EUROPEAN PRO FOOTBALL</span>
+        </div>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
+
+      <nav class="tabs" id="tabNav">
+        <button data-view="home" class="active">Home</button>
+        <button data-view="fixtures">Fixtures</button>
+        <button data-view="results">Results</button>
+        <button data-view="table">League Table</button>
+        <button data-view="teams">Teams</button>
+        <button data-view="stats">Stats</button>
+      </nav>
+
+      <a class="discord-btn" href="https://discord.gg/Dn62CeCSx" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M20.317 4.369A19.791 19.791 0 0 0 15.885 3c-.222.4-.48.94-.658 1.37a18.27 18.27 0 0 0-5.452 0A9.4 9.4 0 0 0 9.115 3a19.736 19.736 0 0 0-4.435 1.372C1.578 8.79.892 13.093 1.235 17.336a19.9 19.9 0 0 0 5.993 3.037 14.7 14.7 0 0 0 1.284-2.09 12.9 12.9 0 0 1-2.02-.973c.17-.124.336-.253.497-.386 3.897 1.8 8.126 1.8 11.977 0 .163.133.33.262.497.386-.641.383-1.32.71-2.022.974.375.735.81 1.435 1.284 2.09a19.83 19.83 0 0 0 6-3.038c.403-4.907-.688-9.171-2.908-12.967ZM8.02 14.746c-1.164 0-2.117-1.064-2.117-2.373 0-1.31.936-2.375 2.117-2.375 1.192 0 2.14 1.075 2.12 2.375 0 1.31-.928 2.373-2.12 2.373Zm7.975 0c-1.164 0-2.116-1.064-2.116-2.373 0-1.31.936-2.375 2.116-2.375 1.193 0 2.141 1.075 2.12 2.375 0 1.31-.927 2.373-2.12 2.373Z"/></svg>
+        <span>Join Discord</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="eyebrow"><span class="dot"></span> SEASON MMXXVI — MATCHDAY 9 LIVE</div>
+      <h1>THE HOME OF<br><em>EUROPEAN</em> FOOTBALL.</h1>
+      <p>Fixtures, results, tables and stats for the European Professional Football league — updated every matchday. Follow every Team, every Player, every point.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#" onclick="goTo('table');return false;">View Table</a>
+        <a class="btn btn-ghost" href="https://discord.gg/Dn62CeCSx" target="_blank" rel="noopener">Join Discord</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-mark"><img src="assets/logo.png" alt="EPF crest"></div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============ HOME ============ -->
+    <section class="view active" id="view-home">
+      <div class="home-grid">
+        <div class="stack">
+          <div class="panel">
+            <div class="panel-title">Upcoming Fixtures <a href="#" onclick="goTo('fixtures');return false;">All fixtures →</a></div>
+            <div class="mini-list" id="homeFixtures"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Latest Results <a href="#" onclick="goTo('results');return false;">All results →</a></div>
+            <div class="mini-list" id="homeResults"></div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="panel">
+            <div class="panel-title">League Table <a href="#" onclick="goTo('table');return false;">Full table →</a></div>
+            <table id="homeTable"></table>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Top Scorer</div>
+            <div class="mini-list" id="homeTopScorer"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FIXTURES ============ -->
+    <section class="view" id="view-fixtures">
+      <div class="section-head"><h2>Fixtures</h2><span class="sub">Season MMXXVI</span></div>
+      <div class="panel" id="fixturesPanel"></div>
+    </section>
+
+    <!-- ============ RESULTS ============ -->
+    <section class="view" id="view-results">
+      <div class="section-head"><h2>Results</h2><span class="sub">Season MMXXVI</span></div>
+      <div class="panel" id="resultsPanel"></div>
+    </section>
+
+    <!-- ============ TABLE ============ -->
+    <section class="view" id="view-table">
+      <div class="section-head"><h2>League Table</h2><span class="sub">Matchday 9</span></div>
+      <div class="panel"><table id="fullTable"></table></div>
+    </section>
+
+    <!-- ============ TEAMS ============ -->
+    <section class="view" id="view-teams">
+      <div class="section-head"><h2>Teams</h2><span class="sub">12 clubs</span></div>
+      <div class="teams-grid" id="teamsGrid"></div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="view" id="view-stats">
+      <div class="section-head"><h2>Player Stats</h2><span class="sub">Season MMXXVI</span></div>
+      <div class="stats-grid">
+        <div class="panel">
+          <div class="panel-title">Most Goals</div>
+          <div id="statGoals"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Most Assists</div>
+          <div id="statAssists"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Most Clean Sheets</div>
+          <div id="statCleansheets"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><img src="assets/logo.png" alt="EPF"><span>EUROPEAN PROFESSIONAL FOOTBALL &nbsp;·&nbsp; MMXXIII</span></div>
+      <a class="discord-btn" href="https://discord.gg/Dn62CeCSx" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M20.317 4.369A19.791 19.791 0 0 0 15.885 3c-.222.4-.48.94-.658 1.37a18.27 18.27 0 0 0-5.452 0A9.4 9.4 0 0 0 9.115 3a19.736 19.736 0 0 0-4.435 1.372C1.578 8.79.892 13.093 1.235 17.336a19.9 19.9 0 0 0 5.993 3.037 14.7 14.7 0 0 0 1.284-2.09 12.9 12.9 0 0 1-2.02-.973c.17-.124.336-.253.497-.386 3.897 1.8 8.126 1.8 11.977 0 .163.133.33.262.497.386-.641.383-1.32.71-2.022.974.375.735.81 1.435 1.284 2.09a19.83 19.83 0 0 0 6-3.038c.403-4.907-.688-9.171-2.908-12.967ZM8.02 14.746c-1.164 0-2.117-1.064-2.117-2.373 0-1.31.936-2.375 2.117-2.375 1.192 0 2.14 1.075 2.12 2.375 0 1.31-.928 2.373-2.12 2.373Zm7.975 0c-1.164 0-2.116-1.064-2.116-2.373 0-1.31.936-2.375 2.116-2.375 1.193 0 2.141 1.075 2.12 2.375 0 1.31-.927 2.373-2.12 2.373Z"/></svg>
+        <span>Discord</span>
+      </a>
+      <div class="footer-copy">© MMXXIII EPF — European Professional Football. All Teams, All Players, One League.</div>
+    </div>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
